@@ -362,7 +362,7 @@ const authenticateWallet = (req, res, next) => {
 // );
 
 app.get("/", (req, res) => {
-  res.json({ res: "utxo project" });
+  res.json({ res: "Lemonschain backend" });
 });
 
 // Endpoint for users to swap tokens
