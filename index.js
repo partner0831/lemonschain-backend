@@ -8,7 +8,7 @@ const CryptoJS = require("crypto-js");
 const axios = require("axios");
 dotenv.config(); // Load environment variables from .env file
 
-const mintContractAddress = "0x7157969c98f5a88A1C3C598908334E3c4EdBeA10";
+const mintContractAddress = "0xb1ccf2c5617d9EB49A3eA7E900EDaFFB5eBC53cC";
 const mintConntractAbi = [
   {
     inputs: [
@@ -153,7 +153,7 @@ const mintConntractAbi = [
     type: "function",
   },
   {
-    inputs: [],
+    inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
     name: "mintNFT",
     outputs: [],
     stateMutability: "nonpayable",
@@ -305,7 +305,6 @@ const mintConntractAbi = [
     type: "function",
   },
 ];
-
 const PORT = process.env.PORT || 9000; // Use port from .env file or default to 9000
 const app = express();
 
