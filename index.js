@@ -8,7 +8,7 @@ const CryptoJS = require("crypto-js");
 const axios = require("axios");
 dotenv.config(); // Load environment variables from .env file
 
-const mintContractAddress = "0xb1ccf2c5617d9EB49A3eA7E900EDaFFB5eBC53cC";
+const mintContractAddress = "0x179828a8c2c593F5B1dE45157af8F396a739eFb9";
 const mintConntractAbi = [
   {
     inputs: [
@@ -108,6 +108,13 @@ const mintConntractAbi = [
     inputs: [{ internalType: "address", name: "", type: "address" }],
     name: "addressMintPrices",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "adminWallet",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
@@ -362,7 +369,7 @@ app.get("/", (req, res) => {
 app.post("/swap", async (req, res) => {
   const { address } = req.body;
   const web3 = new Web3(
-    new Web3.providers.HttpProvider("https://bsc-testnet-rpc.publicnode.com")
+    new Web3.providers.HttpProvider("https://bsc-dataseed.binance.org")
   );
   web3.eth.accounts.wallet.add(process.env.PRIVATEKEY);
   const tokenContract = new web3.eth.Contract(
@@ -381,9 +388,9 @@ app.post("/swap", async (req, res) => {
         address,
         web3.utils.toWei(entry.price.toString(), "ether")
       )
-      .send({ from: "0x79d69ed493Dc5BD70bE9D9Fba5CDE8065fD0FaD4" });
+      .send({ from: "0xDBc6Cdfb886d2A2b80de305bf598A64D20dEEB2F" });
     res.json({
-      trx: `https://testbscscan.org/tx/${transaction.transactionHash}`,
+      trx: `https://bscscan.org/tx/${transaction.transactionHash}`,
       message: "success",
     });
   } catch (error) {
