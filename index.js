@@ -406,7 +406,7 @@ app.post("/token", async (req, res) => {
     "https://api.lbkex.com/v2/supplement/ticker/price.do?symbol=lct_usdt"
   );
   const tokenPrice = response.data.data[0].price;
-  const convertedLCT = Math.floor((1000 / tokenPrice) * 1000) / 1000;
+  const convertedLCT = Math.floor((100 / tokenPrice) * 1000) / 1000;
 
   if (tokenPrice) {
     const existingEntryIndex = variables.findIndex(
